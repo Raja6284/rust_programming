@@ -30,17 +30,38 @@
 
 
 
+// fn main(){
+//     let name:String = String :: from("Raja");
+
+//     let (len,name) = get_len(name);
+//     println!("{}",len);
+//     //println!("{}",name)//ownership has been transferred to s{
+//     print!("name : {}",name);
+// }
+
+// fn get_len(s:String)->(usize,String){
+//     println!("from the get_len function , s : {}",s);
+//     return (s.len(),s);
+
+// }
+
+
+
+
+//BORROWING RULES
+//You can only have one mutable references.If there ia a mutable reference , there can't be other immutable or mutable reference
+//you  can have multiple immutable reference
+
+
 fn main(){
-    let name:String = String :: from("Raja");
+    let mut name:String = String::from("Raja");
 
-    let (len,name) = get_len(name);
-    println!("{}",len);
-    //println!("{}",name)//ownership has been transferred to s{
-    print!("name : {}",name);
-}
+    let str1: &mut String = &mut name;
 
-fn get_len(s:String)->(usize,String){
-    println!("from the get_len function , s : {}",s);
-    return (s.len(),s);
+    println!("{}",str1);
+    //ownership of str1 ends here because str1 has not been used after this line, now you can make any number of immutatble reference
+    let str2: &String = &name;
 
+    //println!("{} {}",str2,str1);
+    println!("{}",str2);
 }
