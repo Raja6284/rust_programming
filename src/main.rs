@@ -16,14 +16,31 @@
 //When the owner goes out of scope , the value will be dropped
 
 
+// fn main(){
+//     let name:String = String :: from("Raja");
+
+//     println!("This is name : {}",name);
+
+//     let mut name2 = name;
+//     name2.push_str(" Kumar");
+//     println!("this is name2 : {}", name2);
+
+//     //println!("This is name : {}",name); this line gives error, because the owenership has been transferred to name2 , it will not give error if name.clone was written in line no.24
+// }
+
+
+
 fn main(){
     let name:String = String :: from("Raja");
 
-    println!("This is name : {}",name);
+    let (len,name) = get_len(name);
+    println!("{}",len);
+    //println!("{}",name)//ownership has been transferred to s{
+    print!("name : {}",name);
+}
 
-    let mut name2 = name;
-    name2.push_str(" Kumar");
-    println!("this is name2 : {}", name2);
+fn get_len(s:String)->(usize,String){
+    println!("from the get_len function , s : {}",s);
+    return (s.len(),s);
 
-    //println!("This is name : {}",name); this line gives error, because the owenership has been transferred to name2 , it will not give error if name.clone was written in line no.24
 }
