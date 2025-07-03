@@ -53,15 +53,64 @@
 //you  can have multiple immutable reference
 
 
+// fn main(){
+//     let mut name:String = String::from("Raja");
+
+//     let str1: &mut String = &mut name;
+
+//     println!("{}",str1);
+//     //ownership of str1 ends here because str1 has not been used after this line, now you can make any number of immutatble reference
+//     let str2: &String = &name;
+
+//     //println!("{} {}",str2,str1);
+//     println!("{}",str2);
+//}
+
+
+
+
+//Enum with value
+
+use std::f32::consts::PI;
+
+enum Shape{
+    Square(f32),
+    Circle(f32),
+    Rectangle(f32,f32)
+}
+
+
 fn main(){
-    let mut name:String = String::from("Raja");
+    println!("Here is the reuired answer : ");
+    println!("Area of square : {}",calulate_area(Shape::Square(5.0)));
+    println!("Area of square : {}",calulate_area(Shape::Circle(5.0)));
+    println!("Area of square : {}",calulate_area(Shape::Rectangle(5.0,10.0)));
 
-    let str1: &mut String = &mut name;
 
-    println!("{}",str1);
-    //ownership of str1 ends here because str1 has not been used after this line, now you can make any number of immutatble reference
-    let str2: &String = &name;
+    println!("Here is the answer for perimeter");
+    println!("Area of square : {}",calulate_perimeter(Shape::Square(5.0)));
+    println!("Area of square : {}",calulate_perimeter(Shape::Circle(5.0)));
+    println!("Area of square : {}",calulate_perimeter(Shape::Rectangle(5.0,10.0)));
 
-    //println!("{} {}",str2,str1);
-    println!("{}",str2);
+}
+
+fn calulate_area(s:Shape)->f32{
+
+  match s{
+        Shape::Square(a) => return a*a,
+        Shape::Circle(a) => return PI*a*a,
+        Shape::Rectangle(a, b) => return a * b
+        
+    }
+}
+
+
+fn calulate_perimeter(s:Shape)->f32{
+
+    match s{
+        Shape::Square(a) => return 4.0*a,
+        Shape::Circle(a) => return 2.0*PI*a,
+        Shape::Rectangle(a, b) => return 2.0*(a + b)
+        
+    }
 }
