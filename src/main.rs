@@ -72,6 +72,7 @@
 //Enum with value
 
 use std::f32::consts::PI;
+use std::fs;
 
 enum Shape{
     Square(f32),
@@ -92,7 +93,20 @@ fn main(){
     println!("Area of square : {}",calulate_perimeter(Shape::Circle(5.0)));
     println!("Area of square : {}",calulate_perimeter(Shape::Rectangle(5.0,10.0)));
 
+ let greeting_file_result = fs::read_to_string("hello.txt");
+
+    match greeting_file_result {
+        Ok(file_content) => {
+            println!("File read successfully: {:?}", file_content);
+        },
+        Err(error) => {
+            println!("Failed to read file: {:?}", error);
+        }
+    }
 }
+
+
+
 
 fn calulate_area(s:Shape)->f32{
 
