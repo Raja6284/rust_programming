@@ -71,60 +71,77 @@
 
 //Enum with value
 
-use std::f32::consts::PI;
-use std::fs;
+// use std::f32::consts::PI;
+// use std::fs;
 
-enum Shape{
-    Square(f32),
-    Circle(f32),
-    Rectangle(f32,f32)
-}
-
-
-fn main(){
-    println!("Here is the reuired answer : ");
-    println!("Area of square : {}",calulate_area(Shape::Square(5.0)));
-    println!("Area of square : {}",calulate_area(Shape::Circle(5.0)));
-    println!("Area of square : {}",calulate_area(Shape::Rectangle(5.0,10.0)));
+// enum Shape{
+//     Square(f32),
+//     Circle(f32),
+//     Rectangle(f32,f32)
+// }
 
 
-    println!("Here is the answer for perimeter");
-    println!("Area of square : {}",calulate_perimeter(Shape::Square(5.0)));
-    println!("Area of square : {}",calulate_perimeter(Shape::Circle(5.0)));
-    println!("Area of square : {}",calulate_perimeter(Shape::Rectangle(5.0,10.0)));
-
- let greeting_file_result = fs::read_to_string("hello.txt");
-
-    match greeting_file_result {
-        Ok(file_content) => {
-            println!("File read successfully: {:?}", file_content);
-        },
-        Err(error) => {
-            println!("Failed to read file: {:?}", error);
-        }
-    }
-}
+// fn main(){
+//     println!("Here is the reuired answer : ");
+//     println!("Area of square : {}",calulate_area(Shape::Square(5.0)));
+//     println!("Area of square : {}",calulate_area(Shape::Circle(5.0)));
+//     println!("Area of square : {}",calulate_area(Shape::Rectangle(5.0,10.0)));
 
 
+//     println!("Here is the answer for perimeter");
+//     println!("Area of square : {}",calulate_perimeter(Shape::Square(5.0)));
+//     println!("Area of square : {}",calulate_perimeter(Shape::Circle(5.0)));
+//     println!("Area of square : {}",calulate_perimeter(Shape::Rectangle(5.0,10.0)));
+
+//  let greeting_file_result = fs::read_to_string("hello.txt");
+
+//     match greeting_file_result {
+//         Ok(file_content) => {
+//             println!("File read successfully: {:?}", file_content);
+//         },
+//         Err(error) => {
+//             println!("Failed to read file: {:?}", error);
+//         }
+//     }
+// }
 
 
-fn calulate_area(s:Shape)->f32{
 
-  match s{
-        Shape::Square(a) => return a*a,
-        Shape::Circle(a) => return PI*a*a,
-        Shape::Rectangle(a, b) => return a * b
+
+// fn calulate_area(s:Shape)->f32{
+
+//   match s{
+//         Shape::Square(a) => return a*a,
+//         Shape::Circle(a) => return PI*a*a,
+//         Shape::Rectangle(a, b) => return a * b
         
-    }
+//     }
+// }
+
+
+// fn calulate_perimeter(s:Shape)->f32{
+
+//     match s{
+//         Shape::Square(a) => return 4.0*a,
+//         Shape::Circle(a) => return 2.0*PI*a,
+//         Shape::Rectangle(a, b) => return 2.0*(a + b)
+        
+//     }
+// }
+
+
+
+
+ 
+pub fn main() {
+    let v = vec![1, 2, 3];
+    let v2 = vec![String::from("Raja"), String::from("Kumar")];
+    let v3 = vec![1.0, 2.0, 3.0];
+    println!("{}", first_element(v).unwrap());
+    println!("{}", first_element(v2).unwrap());
+    println!("{}", first_element(v3).unwrap());
 }
 
-
-fn calulate_perimeter(s:Shape)->f32{
-
-    match s{
-        Shape::Square(a) => return 4.0*a,
-        Shape::Circle(a) => return 2.0*PI*a,
-        Shape::Rectangle(a, b) => return 2.0*(a + b)
-        
-    }
+fn first_element<T>(v: Vec<T>) -> Option<T> {
+    return v.into_iter().nth(0);
 }
