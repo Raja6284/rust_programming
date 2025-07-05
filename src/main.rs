@@ -133,15 +133,43 @@
 
 
  
-pub fn main() {
-    let v = vec![1, 2, 3];
-    let v2 = vec![String::from("Raja"), String::from("Kumar")];
-    let v3 = vec![1.0, 2.0, 3.0];
-    println!("{}", first_element(v).unwrap());
-    println!("{}", first_element(v2).unwrap());
-    println!("{}", first_element(v3).unwrap());
+// pub fn main() {
+//     let v = vec![1, 2, 3];
+//     let v2 = vec![String::from("Raja"), String::from("Kumar")];
+//     let v3 = vec![1.0, 2.0, 3.0];
+//     println!("{}", first_element(v).unwrap());
+//     println!("{}", first_element(v2).unwrap());
+//     println!("{}", first_element(v3).unwrap());
+// }
+
+// fn first_element<T>(v: Vec<T>) -> Option<T> {
+//     return v.into_iter().nth(0);
+// }
+
+
+
+
+
+use serde::{Serialize, Deserialize};
+use serde_json::{self};
+
+#[derive(Serialize, Deserialize, Debug)]
+struct Person {
+    name: String,
+    age: u32,
 }
 
-fn first_element<T>(v: Vec<T>) -> Option<T> {
-    return v.into_iter().nth(0);
+fn main() {
+    let person = Person {
+        name: String::from("Raja Kumar"),
+        age: 21,
+    };
+
+    // Serialize to JSON
+    let json_str = serde_json::to_string(&person).unwrap();
+    println!("Serialized JSON: {}", json_str);
+
+    // Deserialize from JSON
+    let deserialized_person: Person = serde_json::from_str(&json_str).unwrap();
+    println!("Deserialized Person: {:?}", deserialized_person);
 }
