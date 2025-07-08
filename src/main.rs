@@ -150,26 +150,120 @@
 
 
 
-use serde::{Serialize, Deserialize};
-use serde_json::{self};
+// use serde::{Serialize, Deserialize};
+// use serde_json::{self};
 
-#[derive(Serialize, Deserialize, Debug)]
-struct Person {
-    name: String,
-    age: u32,
+// #[derive(Serialize, Deserialize, Debug)]
+// struct Person {
+//     name: String,
+//     age: u32,
+// }
+
+// fn main() {
+//     let person = Person {
+//         name: String::from("Raja Kumar"),
+//         age: 21,
+//     };
+
+//     // Serialize to JSON
+//     let json_str = serde_json::to_string(&person).unwrap();
+//     println!("Serialized JSON: {}", json_str);
+
+//     // Deserialize from JSON
+//     let deserialized_person: Person = serde_json::from_str(&json_str).unwrap();
+//     println!("Deserialized Person: {:?}", deserialized_person);
+// }
+
+
+
+
+
+// use borsh::{BorshSerialize, BorshDeserialize};
+
+// #[derive(BorshSerialize, BorshDeserialize, Debug, PartialEq)]
+// struct MyStruct {
+//     id: u64,
+//     data: String,
+//     v: Vec<u32>
+// }
+
+// fn main() {
+//     let original = MyStruct {
+//         id: 42,
+//         data: "Hello, Borsh!".into(),
+//         v: vec![1, 2, 3]
+//     };
+
+//     let mut buffer: Vec<u8> = Vec::new();
+
+//     original.serialize(&mut buffer).unwrap();
+    
+//     // Deserialize
+//     let deserialized = MyStruct::try_from_slice(&mut buffer).unwrap();
+    
+//     assert_eq!(original, deserialized);
+//     println!("Successfully serialized and deserialized: {:?}", deserialized);
+// }
+
+
+
+
+//declarative macro
+// use std::{fmt::format,path::Display};
+
+// #[derive(Debug)]
+// #[derive(Display)]
+use std::fmt::{write,Debug,Display,Formatter,Result};
+
+#[derive(Debug)]  //deriving debug traint using debug macro
+//#[derive(Display)]     //Display trait does not exist, you need to implement Display trait manually
+
+// macro_rules! say_hello{
+//     ()=>{
+//         println!("you called an empty macro");
+//     }
+
+
+// }
+
+
+struct User{
+    username:String,
+    password:String,
+    age:u32
 }
 
-fn main() {
-    let person = Person {
-        name: String::from("Raja Kumar"),
-        age: 21,
+
+// impl Debug for User{         //manually implementing Debug trait
+//     //it expect you to implement you fmt function
+//     fn fmt(&self, f: &mut Formatter<'_>) ->std::fmt::Result{
+//         write!(f, "username is {}",self.username);
+//     }
+
+// }
+
+impl Display for User{
+      
+        fn fmt(&self, f: &mut Formatter) -> Result {
+            write!(f, "This is the username : {}, \nThis is the passwrod: {}", self.username,self.password)
+        }
+   
+}
+
+fn main(){
+    //say_hello!();
+
+    let u:User = User { 
+        username: String::from("Raja"), 
+        password: String::from("raja@123"), 
+        age: 22 
     };
 
-    // Serialize to JSON
-    let json_str = serde_json::to_string(&person).unwrap();
-    println!("Serialized JSON: {}", json_str);
+    println!("{}",u); //display
 
-    // Deserialize from JSON
-    let deserialized_person: Person = serde_json::from_str(&json_str).unwrap();
-    println!("Deserialized Person: {:?}", deserialized_person);
+    println!("{:?}",u); //debug
 }
+
+
+
+
